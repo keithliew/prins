@@ -130,6 +130,8 @@ p{margin-bottom:1em}
 .card-link{display:inline-block;margin-top:12px;font-weight:600;color:var(--pink-text)}
 .card-link::after{content:" →"}
 a.card:hover{border-color:var(--pink)}
+.card-media-placeholder{aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;
+  background:var(--ink);color:#fff;font-family:var(--font-display);font-size:1.2rem;text-align:center}
 
 /* ---------- Lists / tables ---------- */
 .tick-list{list-style:none;max-width:52em}
