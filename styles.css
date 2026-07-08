@@ -151,7 +151,7 @@ tbody tr:nth-child(even){background:var(--mist)}
 .faq summary::-webkit-details-marker,details.depth summary::-webkit-details-marker{display:none}
 .faq summary h3,details.depth summary h3{font-family:var(--font-body);font-weight:600;font-size:1rem;display:inline}
 .faq summary::after,details.depth summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.3rem;color:var(--pink-text)}
-.faq details[open] summary::after,details.depth[open] summary::after{content:"U+2212"}
+.faq details[open] summary::after,details.depth[open] summary::after{content:"\2212"}
 .faq-a{padding:0 16px 16px}
 .faq-a p:last-child{margin-bottom:0}
 .faq-a ul{padding-left:1.2em}
