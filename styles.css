@@ -1,0 +1,226 @@
+/* ==========================================================================
+   PRINS Solution — design tokens (derived from uploaded brand assets, §7)
+   ========================================================================== */
+:root{
+  /* Sampled from the Company Profile 2026 deck's hot-pink slide fields; used as the single accent (CTA, key figures, motif rule) */
+  --pink:#FF1372;
+  /* The raw pink fails WCAG AA for text on white (~3.6:1); darkened for text/link use — noted adjustment */
+  --pink-text:#B0004F;
+  /* Sampled from the deck's charcoal slides; primary ink and dark panels */
+  --ink:#262326;
+  /* Paper white, matching the deck's white text-on-color system inverted for web reading */
+  --paper:#FFFFFF;
+  /* Neutral mist derived from the deck photos' venue greys, for alternating section tint */
+  --mist:#F6F3F5;
+
+  /* Display face: Archivo Black — matches the PRINS logo's ultra-bold geometric weight without copying its custom cuts */
+  --font-display:'Archivo Black', 'Arial Black', sans-serif;
+  /* Body face: Jost — geometric sans echoing the Century Gothic-style body type used throughout the client's deck */
+  --font-body:'Jost', 'Century Gothic', 'Segoe UI', sans-serif;
+
+  --max:1160px;
+  --radius:6px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Older/high-ticket corporate audience: 17.5px base, high contrast (§7 P3) */
+body{font-family:var(--font-body);font-size:17.5px;line-height:1.65;color:var(--ink);background:var(--paper)}
+
+img{max-width:100%;height:auto;display:block}
+a{color:var(--pink-text)}
+strong{font-weight:600}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.6vw,3.1rem)}
+h2{font-size:clamp(1.35rem,2.6vw,1.8rem);margin-bottom:.7em}
+h3{font-size:1.08rem;line-height:1.3}
+p{margin-bottom:1em}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:10px 16px;z-index:200}
+.skip:focus{left:0}
+
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+
+/* ---------- Signature motif #1: the deck's pink vertical rule before headings ---------- */
+.rule-head{position:relative;padding-left:18px;margin-top:1.6em}
+.rule-head::before{content:"";position:absolute;left:0;top:.1em;bottom:.1em;width:5px;background:var(--pink)}
+
+/* ---------- Signature motif #2: the deck's pipe-separated eyebrow labels ---------- */
+.eyebrow{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1em;opacity:.92}
+.eyebrow b{font-weight:600}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid #eee}
+.header-in{display:flex;align-items:center;justify-content:space-between;min-height:66px;gap:16px}
+.brand img{width:118px;height:auto}
+.nav-list{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-list a{display:block;padding:12px 11px;min-height:44px;text-decoration:none;color:var(--ink);font-weight:500;font-size:.98rem}
+.nav-list a[aria-current="page"]{color:var(--pink-text);box-shadow:inset 0 -3px 0 var(--pink)}
+.nav-list a:hover{color:var(--pink-text)}
+.nav-cta-li{margin-left:6px}
+.nav-toggle{display:none;background:none;border:2px solid var(--ink);border-radius:var(--radius);width:46px;height:44px;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px}
+.nav-toggle span:not(.sr-only){display:block;width:20px;height:2px;background:var(--ink)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-block;font-family:var(--font-body);font-weight:600;font-size:1rem;text-decoration:none;border:0;cursor:pointer;padding:13px 26px;min-height:44px;border-radius:var(--radius);transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-solid{background:var(--pink);color:#fff}
+.btn-solid:hover{box-shadow:0 6px 18px rgba(255,19,114,.35)}
+.btn-light{background:var(--paper);color:var(--ink)}
+
+/* ---------- Hero (home): split pink / photo, mirroring the deck's divider slides ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,46%) minmax(0,54%);min-height:72vh}
+.hero-panel{background:var(--pink);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:64px 6vw 64px calc(max((100vw - var(--max))/2, 22px))}
+.hero-panel .eyebrow{color:#fff}
+.hero-panel h1{color:#fff;margin-bottom:.5em}
+.hero-panel .lede{font-size:1.08rem;max-width:34em}
+.hero-panel .btn{align-self:flex-start;margin-top:.6em}
+.hero-panel .fine{margin-top:1.2em}
+.hero-media{background:var(--ink)}
+.fine{font-size:.86rem;opacity:.85;margin-bottom:0}
+
+/* Hero proof-mosaic: static case-study grid, no carousel/autoplay */
+.proof-grid{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;height:100%}
+.proof-grid li{overflow:hidden}
+.proof-grid figure{position:relative;margin:0;height:100%;aspect-ratio:1/1}
+.proof-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.proof-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 9px;
+  background:linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,0));
+  color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.proof-grid li:hover img{transform:scale(1.05)}
+@media (prefers-reduced-motion:reduce){.proof-grid img{transition:none}.proof-grid li:hover img{transform:none}}
+@media (max-width:420px){.proof-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Page hero (inner pages) ---------- */
+.page-hero{background:var(--ink);color:#fff;padding:70px 0 56px}
+.page-hero h1{color:#fff;max-width:20em}
+.page-hero .lede{max-width:42em;font-size:1.06rem}
+.page-hero .eyebrow{color:var(--pink);opacity:1}
+.page-hero .btn-solid{margin-top:.4em}
+
+/* ---------- Stats strip ---------- */
+.stats{background:var(--ink);color:#fff;padding:44px 0}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.stat .num{display:block;font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2rem);color:var(--pink)}
+.stat .lbl{display:block;font-size:.9rem;opacity:.85;margin-top:4px}
+
+/* ---------- Sections ---------- */
+.section{padding:62px 0}
+.section-tint{background:var(--mist)}
+.max-w{max-width:52em}
+.logo-row{font-weight:500;letter-spacing:.02em;line-height:2;color:#4a464a;margin-bottom:0}
+.addon-line{margin-top:1.6em;max-width:52em}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+
+/* ---------- Cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cards-2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--paper);border:1px solid #ece7ea;border-radius:var(--radius);overflow:hidden;text-decoration:none;color:var(--ink);display:flex;flex-direction:column}
+.section-tint .card{border-color:#e5dee2}
+.card img{aspect-ratio:16/11;object-fit:cover;width:100%}
+.card-body{padding:20px 22px 24px}
+.card-body h3{margin-bottom:.5em}
+.card-body p{font-size:.96rem;margin-bottom:0}
+.card-link{display:inline-block;margin-top:12px;font-weight:600;color:var(--pink-text)}
+.card-link::after{content:" →"}
+a.card:hover{border-color:var(--pink)}
+
+/* ---------- Lists / tables ---------- */
+.tick-list{list-style:none;max-width:52em}
+.tick-list li{padding:10px 0 10px 26px;position:relative;border-bottom:1px solid #efe9ec}
+.tick-list li::before{content:"";position:absolute;left:0;top:18px;width:10px;height:10px;background:var(--pink)}
+.rfq-list{padding-left:1.3em;max-width:40em}
+.rfq-list li{padding:4px 0}
+.table-scroll{overflow-x:auto;margin:1em 0 1.6em}
+table{border-collapse:collapse;width:100%;min-width:520px}
+th,td{text-align:left;padding:12px 14px;border:1px solid #e6e0e3;font-size:.97rem}
+thead th{background:var(--ink);color:#fff;font-family:var(--font-body);font-weight:600}
+tbody tr:nth-child(even){background:var(--mist)}
+
+/* ---------- FAQ / depth accordions (native details, crawlable) ---------- */
+.faq details,details.depth{border:1px solid #e6e0e3;border-radius:var(--radius);margin-bottom:10px;background:var(--paper)}
+.faq summary,details.depth summary{list-style:none;cursor:pointer;padding:14px 44px 14px 16px;position:relative;min-height:44px}
+.faq summary::-webkit-details-marker,details.depth summary::-webkit-details-marker{display:none}
+.faq summary h3,details.depth summary h3{font-family:var(--font-body);font-weight:600;font-size:1rem;display:inline}
+.faq summary::after,details.depth summary::after{content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:1.3rem;color:var(--pink-text)}
+.faq details[open] summary::after,details.depth[open] summary::after{content:"\\2212"}
+.faq-a{padding:0 16px 16px}
+.faq-a p:last-child{margin-bottom:0}
+.faq-a ul{padding-left:1.2em}
+details.depth{margin-top:1.4em}
+
+/* ---------- Qualification line ---------- */
+.qual{border-left:5px solid var(--pink);background:var(--mist);padding:14px 18px;font-size:.97rem;margin:1.4em 0}
+.section-tint .qual{background:var(--paper)}
+
+/* ---------- About figure ---------- */
+.about-fig img{border-radius:var(--radius)}
+.about-fig figcaption{font-size:.85rem;opacity:.75;margin-top:8px}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:var(--pink);color:#fff;padding:58px 0;text-align:center}
+.cta-band h2{color:#fff}
+.cta-band p{max-width:38em;margin:0 auto 1.4em}
+.cta-band .btn{margin-top:.4em}
+
+/* ---------- Contact ---------- */
+.enquiry label{display:block;font-weight:500;margin-bottom:14px;font-size:.95rem}
+.enquiry input,.enquiry select,.enquiry textarea{display:block;width:100%;margin-top:5px;padding:11px 12px;font:inherit;border:1px solid #cfc7cc;border-radius:var(--radius);background:#fff;min-height:44px}
+.enquiry textarea{min-height:auto}
+.enquiry .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.enquiry button{margin-top:6px}
+.contact-list{list-style:none}
+.contact-list li{padding:9px 0;border-bottom:1px solid #efe9ec}
+.tbc{color:#8a2b00;background:#FFF3E9;padding:1px 6px;border-radius:4px;font-size:.82rem;white-space:nowrap}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--ink);color:#fff;padding:56px 0 26px;margin-top:0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:36px}
+.foot-line{font-size:.92rem;opacity:.85;margin-top:14px}
+.foot-h{font-family:var(--font-body);font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+.foot-links{list-style:none;font-size:.94rem}
+.foot-links li{margin-bottom:8px}
+.foot-links a{color:#fff;text-decoration:none}
+.foot-links a:hover{color:var(--pink)}
+.foot-legal{border-top:1px solid #3c383c;margin-top:40px;padding-top:20px}
+.foot-legal p{font-size:.82rem;opacity:.7;margin:0}
+.site-footer .tbc{background:#4a3038;color:#ffd9c4}
+
+/* ---------- Floating WhatsApp ---------- */
+.float-wa{position:fixed;right:18px;bottom:18px;z-index:120;display:flex;align-items:center;gap:9px;background:#1EBE5D;color:#fff;text-decoration:none;font-weight:600;padding:12px 18px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.28);min-height:48px}
+.float-wa:hover{transform:translateY(-2px)}
+
+/* ---------- Reveal motion (subtle fade-up only; disabled for reduced motion) ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .btn,.float-wa{transition:none}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .hero-media{min-height:300px}
+  .hero-panel{padding:56px 22px}
+  .split{grid-template-columns:1fr;gap:34px}
+  .cards,.cards-2{grid-template-columns:1fr 1fr}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:20px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:700px){
+  .nav-toggle{display:flex}
+  .nav-list{display:none;position:absolute;left:0;right:0;top:66px;background:var(--paper);flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid #eee;padding:8px 14px 16px}
+  .nav-list.open{display:flex}
+  .nav-list a{padding:13px 8px}
+  .nav-cta-li{margin:8px 0 0}
+  .cards,.cards-2{grid-template-columns:1fr}
+  .enquiry .two-col{grid-template-columns:1fr}
+  .tbc{white-space:normal}
+}

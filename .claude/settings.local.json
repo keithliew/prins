@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' 's#assets/hero-stage.webp#assets/sc-lazada.webp#g' index.html services-brand-activation.html about.html services-employee-engagement.html showcase.html services-corporate-events.html contact.html services-corporate-gifts.html)",
+      "Bash(rm assets/hero-stage.webp)",
+      "Bash(grep -rn \"hero-stage\" *.html assets/)"
+    ]
+  }
+}
